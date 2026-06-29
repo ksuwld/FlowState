@@ -1,0 +1,434 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #E1DACE; 
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    min-height: 100vh;
+}
+
+.header {
+    background-color: #F6F1E4;              
+    width: 100%; 
+    height: 120px;          
+    display: flex;
+    justify-content: flex-start;  
+    align-items: center;
+    padding: 0 80px; 
+}
+
+.main-nav {
+    margin-left: 110px; 
+}
+
+.logo img {
+    width: 90px;
+    height: 103px;
+    object-fit: contain;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 61px; 
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 20px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.main-nav a.active, 
+.main-nav a:hover {
+    color: #8C9C84; 
+}
+
+
+.main-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.hero {
+    width: 100%;
+    height: 892px;
+    position: relative; 
+    display: flex;
+    align-items: center; 
+    padding-left: 80px; 
+    overflow: hidden;
+}
+
+.hero-bg-img {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  
+    z-index: 1;  
+}
+
+.hero-text-container {
+    position: relative;  
+    z-index: 2;  
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero-text-container h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 1.15;
+    color: #FFFFFF; 
+    margin-bottom: 35px;
+    text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15); 
+}
+
+.hero-text-container .subtitle {
+    font-size: 20px;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.9); 
+    margin-bottom: 50px;
+    font-family: 'Inter', Light;
+}
+
+.btn-schedule {
+    background-color: #8C9C84; 
+    color: #FFFFFF;
+    font-family: 'Manrope';
+    font-size: 24px;
+    padding: 18px 65px;
+    border: none;
+    border-radius: 40px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-schedule:hover {
+    background-color: #7A8A73;
+    transform: scale(1.02); 
+} 
+
+.schedule {
+    width: 1440px;
+    padding: 60px 80px;  
+}
+
+.schedule-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.schedule-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 500;
+    color: #000000;
+}
+
+.filters {
+    display: flex;
+    gap: 15px;
+}
+
+.filter-select {
+    background-color: #A5B29B; 
+    color: #000000;
+    font-size: 16px;
+    padding: 10px 45px 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 20px;
+}
+
+.filter-select:focus {
+    outline: none;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 385px); 
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.card {
+    width: 385px;   
+    height: 645px;  
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 30px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.card.hidden {
+    display: none;
+}
+
+.card-img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 25px 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1; 
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px; 
+    font-family: 'Times New Roman', Light;
+}
+
+.card-title h3 {
+    margin: 0;
+    text-align: center;
+    
+    font-family: 'Mancore', serif; 
+    font-size: 30px;
+    font-weight: 400;
+    color: #3E2611; 
+}
+
+.card-title::after {
+    content: "";
+    display: block;
+    width: 35px; 
+    margin-left: 15px; 
+    flex-shrink: 0;
+}
+
+.card-icon {
+    width: 35px; 
+    height: auto;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.card-desc {
+    font-size: 20px;
+    color: #000000;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    font-family: 'Mancore', Extra Light;
+    flex-grow: 0 !important;
+}
+
+.card-time {
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: #000000;
+    font-family: 'Mancore', Regular;
+    margin-top: auto !important;
+}
+
+.card-teacher {
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 25px;
+    font-family: 'Mancore', Regular;
+}
+
+.btn-book {
+    background-color: #8C9C84;
+    color: #FFFFFF;
+    font-size: 20px;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Mancore', Regular;
+}
+
+.btn-book:hover {
+    background-color: #7A8A73;
+}
+
+.filter-select,
+.filter-select option {
+    color: #000000 !important;
+}
+
+input[type="date"].date-picker {
+    background-image: none;
+    padding-right: 20px;
+    font-family: 'Arial', sans-serif; 
+    color: #000000 !important;
+}
+
+input[type="date"].date-picker::-webkit-datetime-edit,
+input[type="date"].date-picker::-webkit-datetime-edit-fields-wrapper,
+input[type="date"].date-picker::-webkit-datetime-edit-text {
+    color: #000000 !important;
+}
+
+input[type="date"].date-picker::-webkit-datetime-edit-month-field,
+input[type="date"].date-picker::-webkit-datetime-edit-day-field,
+input[type="date"].date-picker::-webkit-datetime-edit-year-field {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    opacity: 1 !important;
+}
+
+.modal-overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); 
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #FFFFFF;
+    padding: 50px 70px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    color: #000000;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: #8C9C84;
+}
+
+.modal-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 400;
+    margin-bottom: 35px;
+    color: #000000;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.modal-input {
+    width: 100%;
+    background-color: #E6E1D6; 
+    border: none;
+    border-radius: 12px;
+    padding: 18px 25px;
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+    color: #333333;
+    outline: none;
+}
+
+.modal-input::placeholder {
+    color: #888888;
+}
+
+.select-arrow {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+.btn-submit-booking {
+    background-color: #8C9C84;
+    color: #FFFFFF;
+    font-size: 20px;
+    padding: 15px 50px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    display: block;
+    margin: 40px auto 0; 
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit-booking:hover {
+    background-color: #7A8A73;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .header-container, .nav-menu {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    .hero-section {
+        height: auto;
+        padding: 60px 20px;
+    }
+    .hero-title {
+        font-size: 28px; 
+        line-height: 1.3;
+    }
+    
+    .features-grid, .advantages-wrapper {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}

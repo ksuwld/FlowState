@@ -1,0 +1,227 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.page-teachers-new {
+    background-color: #EBE7E0; 
+    font-family: Arial, sans-serif;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #F6F1E4;              
+    width: 100%; 
+    height: 120px;          
+    display: flex;
+    justify-content: flex-start;  
+    align-items: center;
+    padding: 0 80px; 
+}
+
+.main-nav {
+    margin-left: 110px; 
+}
+
+.logo img {
+    width: 90px;
+    height: 103px;
+    object-fit: contain;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 61px; 
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 20px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.main-nav a.active, 
+.main-nav a:hover {
+    color: #8C9C84; 
+}
+
+.teachers-section {
+    width: 100%;
+    background-color: #8D977F;  
+    padding: 10px 0 100px;
+    text-align: center;
+}
+
+.teachers-main-title {
+    font-family: 'Mancore', Regular;
+    font-size: 50px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.teachers-main-subtitle {
+    font-family: 'Mancore', Light;
+    font-size: 20px;
+    line-height: 1.5;
+    color: #FFFFFF;
+    max-width: 1000px;
+    margin: 0 auto 60px auto;
+    padding: 0 20px;
+}
+
+.teachers-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 121px;
+    padding: 0 40px;
+}
+
+.teacher-card {
+    width: 326px;   
+    height: 637px;  
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+}
+
+.teacher-card-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 330px; 
+}
+
+.teacher-card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.teacher-experience-badge {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background-color: rgba(200, 209, 188, 0.5);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-family: 'Playfair Display', Regular;
+    font-size: 16px;
+    color: #000000;
+}
+
+.teacher-card-info {
+    padding: 20px 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+}
+
+.teacher-name {
+    font-family: 'Mancore';
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.teacher-specialty {
+    font-family: 'Mancore', Regular;
+    font-size: 15px;
+    color: #A5A5A5;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.teacher-price {
+    font-family: 'Mancore', Regular ;
+    font-size: 20px;
+    color: #000000;
+    line-height: 1.4;
+    margin-bottom: 17px;
+}
+
+.teacher-price strong {
+    color: #8D977F;
+    font-size: 16px;
+}
+
+.teacher-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Mancore', Regular;
+    font-size: 15px;
+}
+
+.teacher-star {
+    color: #FFD700;
+    font-size: 18px;
+}
+
+.teacher-reviews {
+    color: #A5A5A5;
+    font-size: 13px;
+}
+
+.btn-more {
+    align-self: center; 
+    background-color: #8D977F;
+    color: #FFFFFF;
+    font-family: 'Mancore', Regular;
+    font-size: 15px;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 40px;
+    cursor: pointer;
+    margin-top: auto; 
+    margin-bottom: 25px; 
+    text-decoration: none; 
+    display: inline-block;
+}
+
+.btn-more:hover {
+    text-decoration: none;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .teachers-grid {
+        grid-template-columns: 1fr; 
+        padding: 10px;
+    }
+    .teacher-card {
+        margin-bottom: 15px;
+        padding: 20px;
+    }
+}

@@ -1,0 +1,210 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #8D977F;
+    font-family: 'Manrope', sans-serif;
+    color: #000000;
+    min-height: 100vh;
+}
+
+.back-link-top {
+    position: fixed;
+    top: 40px;
+    left: 40px;
+    font-size: 20px;
+    color: #000000;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+}
+
+.back-link-top:hover {
+    opacity: 0.6;
+}
+
+.dashboard-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 100px 20px 40px 20px; 
+}
+
+.dash-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 46px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.top-cards-row {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.info-card {
+    flex: 1;
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    padding: 35px 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.info-card h3 {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.info-card .sub-text {
+    font-size: 16px;
+    color: #888888;
+    margin-bottom: 15px;
+}
+
+.info-card .price-text, .info-card .balance-amount {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.schedule-container {
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.schedule-title {
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.workouts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.workout-item {
+    background-color: #E1DACE; 
+    border-radius: 20px;
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.workout-datetime {
+    flex: 1;
+    font-size: 16px;
+}
+
+.workout-info {
+    flex: 2;
+    text-align: center;
+    font-family: 'Mancore', Bold;
+}
+
+.w-name {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-family: 'Manrope', Regular;
+}
+
+.w-teacher {
+    font-size: 16px;
+    color: #444;
+    font-family: 'Manrope', Regular;
+}
+
+.workout-action {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-cancel {
+    background-color: #8D977F;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 25px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #7A8A73;
+}
+
+.logout-link {
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    font-size: 20px;
+    color: #000000;
+    text-decoration: none;
+    z-index: 1000;
+    font-family: 'Manrope', sans-serif;
+    transition: opacity 0.3s ease;
+}
+
+.logout-link:hover {
+    opacity: 0.6;
+}
+
+.quote-container {
+    background-color: #E1DACE;
+    padding: 25px 40px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.quote-title {
+    font-size: 18px;
+    color: #555555;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: #000000;
+}
+
+.quote-author {
+    font-size: 16px;
+    color: #666666;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}

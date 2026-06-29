@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #8D977F; 
+    color: #000000;
+    height: 100vh; 
+    overflow: hidden; 
+}
+
+.split-layout {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+.left-panel {
+    flex: 1; 
+    background-color: #8D977F;
+    position: relative; 
+    display: flex;
+    justify-content: center;
+    align-items: center;     
+    padding: 40px;
+}
+
+.back-link {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    font-size: 22px;
+    color: #000000;
+    text-decoration: none;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: opacity 0.3s ease;
+}
+
+.back-link:hover {
+    opacity: 0.6;
+}
+
+.auth-content {
+    width: 100%;
+    max-width: 500px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cabinet-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px; 
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 60px;
+    width: 100%;
+    letter-spacing: 0.5px;
+    white-space: nowrap; 
+}
+
+.auth-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+    max-width: 380px; 
+    margin-bottom: 60px;
+}
+
+.btn-auth {
+    background-color: #E1DACE; 
+    color: #000000;
+    text-decoration: none; 
+    border-radius: 40px; 
+    padding: 20px 0;
+    font-size: 20px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    width: 100%;
+    letter-spacing: 0.5px;
+}
+
+.btn-auth:hover {
+    background-color: #D4CDBE;
+    transform: scale(1.02);
+}
+
+.auth-footer-text {
+    text-align: center;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 300; 
+    font-size: 18px;
+    line-height: 1.8; 
+    color: #000000;
+}
+
+.right-panel {
+    flex: 1;
+    height: 100vh;
+}
+
+.cabinet-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}

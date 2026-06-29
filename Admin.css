@@ -1,0 +1,152 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.admin-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1240px; 
+    margin: 0 auto;
+    box-sizing: border-box;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+h1 {
+    color: #333;
+    border-bottom: 2px solid #8D977F;
+    padding-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #fff;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #8D977F;
+    color: white;
+}
+
+.btn-delete {
+    background: #d9534f;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    background: #c9302c;
+}
+
+.btn-edit {
+    background: #f0ad4e;
+    color: white;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 13px;
+}
+
+.btn-edit:hover {
+    background: #ec971f;
+}
+
+.btn-add {
+    background: #8D977F;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.btn-add:hover {
+    background: #768267;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #8D977F;
+    text-decoration: none;
+}
+
+.nav-links {
+    margin-bottom: 25px;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 15px; 
+}
+
+.nav-links a {
+    color: #555;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 4px;
+    white-space: nowrap; 
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-links a.active {
+    background: #8D977F;
+    color: white;
+}
+
+.form-block {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 6px;
+    margin-top: 20px;
+    border: 1px solid #eee;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.btn-submit {
+    background: #8D977F;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
