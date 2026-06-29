@@ -205,122 +205,157 @@ $tariff_features = [
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-        let isLoggedIn = <?php echo isset($_SESSION['user_id']) ? 'true' : 'false'; ?>; 
+    let isLoggedIn = <?php echo isset($_SESSION['user_id']) ? 'true' : 'false'; ?>; 
 
-        const modal = document.getElementById('buy-modal');
-        const closeBtn = document.getElementById('close-buy-modal');
-        const buyButtons = document.querySelectorAll('.btn-buy');
-        const tariffSelect = document.getElementById('tariff-select');
-        const priceSelect = document.getElementById('price-select');
-        const purchaseForm = document.getElementById('purchase-form');
-        const successModal = document.getElementById('success-modal');
-        const closeSuccessBtn = document.getElementById('close-success-modal');
+    const modal = document.getElementById('buy-modal');
+    const closeBtn = document.getElementById('close-buy-modal');
+    const buyButtons = document.querySelectorAll('.btn-buy');
+    const tariffSelect = document.getElementById('tariff-select');
+    const priceSelect = document.getElementById('price-select');
+    const purchaseForm = document.getElementById('purchase-form');
+    const successModal = document.getElementById('success-modal');
+    const closeSuccessBtn = document.getElementById('close-success-modal');
 
-        const enrollBtn = document.getElementById('enroll-btn');
-        const trainerSelect = document.getElementById('trainer-select');
-        const datetimeSelect = document.getElementById('datetime-select');
-        const bookingError = document.getElementById('booking-error');
-        const bookingSuccessModal = document.getElementById('booking-success-modal');
-        const closeBookingSuccess = document.getElementById('close-booking-success');
+    const enrollBtn = document.getElementById('enroll-btn');
+    const trainerSelect = document.getElementById('trainer-select');
+    const datetimeSelect = document.getElementById('datetime-select');
+    const bookingError = document.getElementById('booking-error');
+    const bookingSuccessModal = document.getElementById('booking-success-modal');
+    const closeBookingSuccess = document.getElementById('close-booking-success');
 
-        const prices = {
-            'start': '3 500 ₽/мес.',
-            'breath': '5 000 ₽/мес.',
-            'pro': '7 900 ₽/мес.'
-        };
+    const prices = {
+        'start': '3 500 ₽/мес.',
+        'breath': '5 000 ₽/мес.',
+        'pro': '7 900 ₽/мес.'
+    };
 
+    // Защита: проверяем, есть ли выбор тарифов на странице
+    if(tariffSelect) {
         tariffSelect.addEventListener('change', function() {
             const selectedTariff = this.value;
             if (prices[selectedTariff]) {
                 priceSelect.innerHTML = `<option value="${selectedTariff}" selected>${prices[selectedTariff]}</option>`;
             }
         });
+    }
 
-        function checkAuth() {
-            if (!isLoggedIn) {
-                alert('Для совершения покупки или записи на тренировку необходимо войти в Личный кабинет.');
-                window.location.href = 'Login.php'; 
-                return false;
-            }
-            return true;
+    function checkAuth() {
+        if (!isLoggedIn) {
+            alert('Для совершения покупки или записи на тренировку необходимо войти в Личный кабинет.');
+            window.location.href = 'Login.php'; 
+            return false;
         }
+        return true;
+    }
 
-        buyButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                if (!checkAuth()) return;
+    buyButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!checkAuth()) return;
 
-                modal.style.display = 'flex';
-                const card = this.closest('.price-card');
-                if (card) {
-                    const title = card.querySelector('.card-title').textContent.trim();
-                    if (title === 'Старт') tariffSelect.value = 'start';
-                    else if (title === 'Дыхание') tariffSelect.value = 'breath';
-                    else if (title === 'PRO') tariffSelect.value = 'pro';
-                    
-                    tariffSelect.dispatchEvent(new Event('change'));
-                }
-            });
+            if(modal) modal.style.display = 'flex';
+            const card = this.closest('.price-card');
+            if (card) {
+                const title = card.querySelector('.card-title').textContent.trim();
+                if (title === 'Старт') tariffSelect.value = 'start';
+                else if (title === 'Дыхание') tariffSelect.value = 'breath';
+                else if (title === 'PRO') tariffSelect.value = 'pro';
+                
+                if(tariffSelect) tariffSelect.dispatchEvent(new Event('change'));
+            }
         });
+    });
 
+    // Защита: проверяем, есть ли форма покупки
+    if(purchaseForm) {
         purchaseForm.addEventListener('submit', (e) => { 
             e.preventDefault(); 
             const tariffName = tariffSelect.options[tariffSelect.selectedIndex].text;
 
             fetch('update_tariff.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `tariff=${encodeURIComponent(tariffName)}`
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Ошибка при обновлении базы данных');
-            }
-            return response.text();
-        })
-        .then(data => {
-            // Показываем окно успеха только если PHP ответил без ошибок
-            modal.style.display = 'none'; 
-            successModal.style.display = 'flex';
-            setTimeout(() => { window.location.href = 'Dashboard.php'; }, 3000);
-        })
-        .catch(error => {
-            alert("Произошла ошибка! Проверь, создана ли колонка tariff_name в БД.");
-            console.error(error);
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `tariff=${encodeURIComponent(tariffName)}`
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка при обновлении базы данных');
+                }
+                return response.text();
+            })
+            .then(data => {
+                if(modal) modal.style.display = 'none'; 
+                if(successModal) successModal.style.display = 'flex';
+                setTimeout(() => { window.location.href = 'Dashboard.php'; }, 3000);
+            })
+            .catch(error => {
+                alert("Произошла ошибка! Проверь, создана ли колонка tariff_name в БД.");
+                console.error(error);
+            });
         });
-        });
+    }
 
+    // Твой отличный код для записи
+    if(enrollBtn) {
         enrollBtn.addEventListener('click', function(e) {
             e.preventDefault();
             if (!checkAuth()) return;
-            
-            const trainerName = trainerSelect.options[trainerSelect.selectedIndex].text;
-            const datetimeText = datetimeSelect.options[datetimeSelect.selectedIndex].text;
             
             if (!trainerSelect.value || !datetimeSelect.value) {
                 bookingError.style.display = 'block';
                 return;
             }
 
+            bookingError.style.display = 'none';
+
+            const trainerName = trainerSelect.options[trainerSelect.selectedIndex].text;
+            const rawDatetime = datetimeSelect.options[datetimeSelect.selectedIndex].text; 
+
+            let targetDate = new Date(); 
+            if (rawDatetime.includes("Завтра")) {
+                targetDate.setDate(targetDate.getDate() + 1); 
+            }
+            const day = String(targetDate.getDate()).padStart(2, '0');
+            const month = String(targetDate.getMonth() + 1).padStart(2, '0');
+            const year = targetDate.getFullYear();
+            const formattedDate = `${year}-${month}-${day}`;
+
+            const formattedTimeRange = rawDatetime.replace("Сегодня ", "").replace("Завтра ", "").trim(); 
+
+            const requestBody = `teacher_name=${encodeURIComponent(trainerName)}&class_name=${encodeURIComponent('Индивидуальное занятие')}&workout_date=${encodeURIComponent(formattedDate)}&workout_time=${encodeURIComponent(formattedTimeRange)}`;
+
             fetch('quick_book.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: `teacher_name=${encodeURIComponent(trainerName)}&class_name=Индивидуальное занятие&time=${encodeURIComponent(datetimeText)}`
+                body: requestBody
             })
-            .then(() => {
-                bookingSuccessModal.style.display = 'flex';
+            .then(response => {
+                if (!response.ok) throw new Error('Ошибка сервера');
+                return response.text();
+            })
+            .then(data => {
+                console.log("Ответ от сервера:", data);
+                if(bookingSuccessModal) bookingSuccessModal.style.display = 'flex';
                 setTimeout(() => { window.location.href = 'Dashboard.php'; }, 3000);
+            })
+            .catch(error => {
+                console.error("Ошибка бронирования:", error);
+                alert("Произошла ошибка при записи. Открой консоль (F12) для подробностей.");
             });
         });
+    }
 
-        [closeBtn, closeSuccessBtn, closeBookingSuccess].forEach(btn => {
+    // ВОЗВРАЩЕННЫЙ БЛОК ЗАКРЫТИЯ ОКОН:
+    [closeBtn, closeSuccessBtn, closeBookingSuccess].forEach(btn => {
+        if(btn) {
             btn.addEventListener('click', () => {
-                modal.style.display = 'none';
-                successModal.style.display = 'none';
-                bookingSuccessModal.style.display = 'none';
+                if(modal) modal.style.display = 'none';
+                if(successModal) successModal.style.display = 'none';
+                if(bookingSuccessModal) bookingSuccessModal.style.display = 'none';
             });
-        });
+        }
     });
+});
     </script>
 </body>
 </html>

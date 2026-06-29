@@ -96,20 +96,20 @@ $workout_meta = [
                     
                     <select id="filter-time" class="filter-select">
                         <option value="all">Время</option>
-                        <option value="8:00-9:00">8:00 - 9:00</option>
-                        <option value="9:00-10:00">9:00 - 10:00</option>
-                        <option value="9:30-11:00">9:30 - 11:00</option>
-                        <option value="10:00-11:00">10:00 - 11:00</option>
-                        <option value="11:30-13:00">11:30 - 13:00</option>
-                        <option value="12:00-13:30">12:00 - 13:30</option>
-                        <option value="13:30-15:00">13:30 - 15:00</option>
-                        <option value="14:30-16:00">14:30 - 16:00</option>
-                        <option value="15:30-17:00">15:30 - 17:00</option>
-                        <option value="16:00-17:30">16:00 - 17:30</option>
-                        <option value="17:30-19:30">17:30 - 19:30</option>
-                        <option value="18:00-19:30">18:00 - 19:30</option>
-                        <option value="20:00-21:30">20:00 - 21:30</option>
-                        <option value="20:30-22:00">20:30 - 22:00</option>
+                        <option value="08:00">8:00 - 9:00</option>
+                        <option value="09:00">9:00 - 10:00</option>
+                        <option value="09:30">9:30 - 11:00</option>
+                        <option value="10:00">10:00 - 11:00</option>
+                        <option value="11:30">11:30 - 13:00</option>
+                        <option value="12:00">12:00 - 13:30</option>
+                        <option value="13:30">13:30 - 15:00</option>
+                        <option value="14:30">14:30 - 16:00</option>
+                        <option value="15:30">15:30 - 17:00</option>
+                        <option value="16:00">16:00 - 17:30</option>
+                        <option value="17:30">17:30 - 19:30</option>
+                        <option value="18:00">18:00 - 19:30</option>
+                        <option value="20:00">20:00 - 21:30</option>
+                        <option value="20:30">20:30 - 22:00</option>
                     </select>
                 </div>
             </div>
@@ -126,18 +126,20 @@ $workout_meta = [
                         ];
                     ?>
                     <div class="card" data-type="<?= htmlspecialchars($meta['type']) ?>" data-time="<?= htmlspecialchars($workout['workout_time']) ?>" data-gender="<?= htmlspecialchars($meta['gender']) ?>">
-                        <img src="img/<?= htmlspecialchars($meta['img']) ?>" alt="<?= htmlspecialchars($name) ?>" class="card-img">
-                        <div class="card-content">
-                            <div class="card-title">
-                                <img src="img/<?= htmlspecialchars($meta['icon']) ?>" alt="icon" class="card-icon">
-                                <h3><?= htmlspecialchars($name) ?></h3>
-                            </div>
-                            <p class="card-desc"><?= htmlspecialchars($meta['desc']) ?></p>
-                            <p class="card-time"><?= htmlspecialchars($workout['workout_time']) ?></p>
-                            <p class="card-teacher">Преподаватель: <?= htmlspecialchars($workout['teacher_name']) ?></p>
-                            <button class="btn-book">Записаться</button>
-                        </div>
-                    </div>
+    <img src="img/<?= htmlspecialchars($meta['img']) ?>" alt="<?= htmlspecialchars($name) ?>" class="card-img">
+    <div class="card-content">
+        <div class="card-title">
+            <img src="img/<?= htmlspecialchars($meta['icon']) ?>" alt="icon" class="card-icon">
+            <h3><?= htmlspecialchars($name) ?></h3>
+        </div>
+        <p class="card-desc"><?= htmlspecialchars($meta['desc']) ?></p>
+        
+        <p class="card-time"><?= htmlspecialchars($workout['workout_time']) ?></p>
+        
+        <p class="card-teacher">Преподаватель: <?= htmlspecialchars($workout['teacher_name']) ?></p>
+        <button class="btn-book">Записаться</button>
+    </div>
+</div>
                 <?php endforeach; ?>
 
             </div>
@@ -199,28 +201,38 @@ $workout_meta = [
             const filterGender = document.getElementById('filter-gender');
             const filterTime = document.getElementById('filter-time');
             const cards = document.querySelectorAll('.card');
-
+            
             function filterCards() {
-                const selectedType = filterType.value;
-                const selectedGender = filterGender.value;
-                const selectedTime = filterTime.value;
+            const selectedType = filterType.value.trim();
+            const selectedGender = filterGender.value.trim();
+            const selectedTime = filterTime.value.trim();
 
-                cards.forEach(card => {
-                    const cardType = card.getAttribute('data-type') || "";
-                    const cardGender = card.getAttribute('data-gender') || "";
-                    const cardTime = card.getAttribute('data-time') || "";
+            // Очищаем выбранное время от нуля в начале (чтобы 08:00 превратилось в 8:00)
+            const cleanSelectedTime = selectedTime.replace(/^0/, '').trim();
 
-                    const typeMatch = (selectedType === 'all' || selectedType === cardType);
-                    const genderMatch = (selectedGender === 'all' || selectedGender === cardGender);
-                    const timeMatch = (selectedTime === 'all' || selectedTime === cardTime);
+            cards.forEach(card => {
+                const cardType = (card.getAttribute('data-type') || "").trim();
+                const cardGender = (card.getAttribute('data-gender') || "").trim();
+                const cardTime = (card.getAttribute('data-time') || "").trim();
 
-                    if (typeMatch && genderMatch && timeMatch) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            }
+                const typeMatch = (selectedType === 'all' || selectedType === cardType);
+                const genderMatch = (selectedGender === 'all' || selectedGender === cardGender);
+                
+                // Очищаем время карточки от лишних пробелов и убираем ноль в начале, если он есть
+                const cleanCardTime = cardTime.replace(/^0/, '').replace(/\s+/g, '');
+
+                // СЕКРЕТ ЗДЕСЬ: используем startsWith() вместо includes()
+                const timeMatch = (selectedTime === 'all' || cleanCardTime === cleanSelectedTime || cleanCardTime.startsWith(cleanSelectedTime));
+
+                if (typeMatch && genderMatch && timeMatch) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+            
+
 
             if(filterType && filterGender && filterTime) {
                 filterType.addEventListener('change', filterCards);

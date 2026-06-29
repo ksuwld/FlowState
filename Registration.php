@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $surname = trim($_POST['surname']);
     $phone = trim($_POST['phone']);
     $email = trim($_POST['email']);
-    $password = trim($_POST['password']); // Считываем введенный пароль
+    $password = trim($_POST['password']); 
 
     $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
     $stmt->execute([$email]);
@@ -26,10 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($stmt->rowCount() > 0) {
         $error = "Пользователь с таким Email уже зарегистрирован!";
     } else {
-        // Хэшируем пароль для безопасного хранения в БД
+        
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        // tariff_name убран из запроса, так как в БД для него задан по умолчанию NULL
+       
         $sql = "INSERT INTO users (name, surname, phone, email, balance, password) VALUES (?, ?, ?, ?, 0, ?)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$name, $surname, $phone, $email, $hashed_password]);
